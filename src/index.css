@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-dark-950;
+    font-family: 'Poppins', sans-serif;
+  }
+  body {
+    @apply text-neutral-200 min-h-screen;
+  }
+}
+
+:root {
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: dark;
+}
+
+/* Estilizar los input range */
+@layer components {
+  input[type="range"] {
+    @apply appearance-none bg-dark-700 h-2 rounded-lg;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    @apply appearance-none w-6 h-6 rounded-full bg-primary-400 cursor-pointer 
+           hover:bg-primary-300 transition-colors shadow-lg;
+  }
+
+  .card {
+    @apply bg-dark-800/50 backdrop-blur-sm
+           p-6 rounded-2xl shadow-xl
+           border border-dark-700
+           hover:border-primary-400/20 transition-colors duration-300;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-400 to-accent-400 text-transparent bg-clip-text;
+  }
+
+  .button-primary {
+    @apply bg-gradient-to-r from-primary-400 to-accent-400
+           text-white font-semibold 
+           hover:scale-105 transition-all duration-300
+           shadow-lg hover:shadow-primary-400/20;
+  }
+
+  .button-secondary {
+    @apply py-4 px-6 rounded-xl font-semibold text-neutral-200
+           bg-dark-700 hover:bg-dark-600
+           transition-all duration-300 shadow-lg
+           hover:shadow-dark-600/20;
+  }
+}
+
+/* Animaciones personalizadas */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
