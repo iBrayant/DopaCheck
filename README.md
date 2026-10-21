@@ -19,7 +19,7 @@ Aplicación web educativa que implementa un **modelo de ecuaciones diferenciales
 - **Modelo matemático implementado:** `D(t) = (α·E₀ / β) · (1 − e^(−βt))`.
 - **Curva interactiva** de la respuesta dopaminérgica con Chart.js, más una tabla de datos detallados.
 - **Interpretación automática** del resultado en cinco estados, con mensaje explicativo.
-- **Métricas derivadas:** intensidad máxima, tiempo de respuesta, velocidad de activación y tasa de cambio promedio.
+- **Métricas:** intensidad máxima del nivel de dopamina y tiempo hasta alcanzarla.
 - **Interfaz** oscura, responsiva y con animaciones (Framer Motion).
 - **Lógica separada de la interfaz:** el modelo vive en `src/utils/dopamineModel.js`.
 
