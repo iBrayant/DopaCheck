@@ -1,5 +1,6 @@
 import { Line } from 'react-chartjs-2';
 import { motion } from 'framer-motion';
+import Disclaimer from './Disclaimer';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -28,15 +29,12 @@ const ResultGraph = ({ data, interpretation, simulationParams }) => {
     return <div>Error: Datos no disponibles</div>;
   }
 
-  const maxValue = Math.max(...data.map(point => point.D));
-  const peakTime = data.find(point => point.D === maxValue)?.t || 0;
-
   const chartData = {
     labels: data.map(point => `t=${point.t}`),
     datasets: [
       {
         label: 'Nivel de Dopamina',
-        data: data.map(point => point.D.toFixed(2)),
+        data: data.map(point => Number(point.D.toFixed(2))),
         borderColor: '#818cf8',
         backgroundColor: '#818cf820',
         tension: 0.4,
@@ -193,8 +191,10 @@ const ResultGraph = ({ data, interpretation, simulationParams }) => {
             </div>
             <h3 className="text-lg font-semibold text-neutral-200">Tiempo de Respuesta</h3>
           </div>
-          <p className="text-2xl font-bold text-accent-400">{interpretation.peakTime} min</p>
-          <p className="text-sm text-neutral-400">Tiempo hasta respuesta máxima</p>
+          <p className="text-2xl font-bold text-accent-400">
+            {Number.isFinite(interpretation.crossingTime) ? `${interpretation.crossingTime} min` : `> ${data[data.length - 1].t} min`}
+          </p>
+          <p className="text-sm text-neutral-400">Tiempo hasta alcanzar el umbral de respuesta normal (D = 15)</p>
         </motion.div>
       </div>
 
@@ -232,11 +232,9 @@ const ResultGraph = ({ data, interpretation, simulationParams }) => {
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-green-400"></span>
-                {interpretation.peakTime <= 3 ?
-                  'Tiempo al máximo rápido, sugiere buena reactividad' :
-                  interpretation.peakTime <= 6 ?
-                  'Tiempo al máximo normal' :
-                  'Tiempo al máximo prolongado, sugiere reactividad reducida'
+                {Number.isFinite(interpretation.crossingTime) ?
+                  `Alcanza el umbral de respuesta normal en ${interpretation.crossingTime} min` :
+                  `No alcanza el umbral de respuesta normal dentro de ${data[data.length - 1].t} min`
                 }
               </li>
             </ul>
@@ -295,6 +293,8 @@ const ResultGraph = ({ data, interpretation, simulationParams }) => {
           </table>
         </div>
       </div>
+
+      <Disclaimer />
 
       {/* Botón de nuevo test */}
       <motion.button

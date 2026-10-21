@@ -14,7 +14,6 @@ const TestForm = ({ onSubmit }) => {
       ...formData,
       beta: convertBetaScale(formData.beta)
     };
-    console.log('Enviando datos:', adjustedData);
     onSubmit(adjustedData);
   };
 

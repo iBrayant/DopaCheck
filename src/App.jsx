@@ -6,7 +6,8 @@ import TestForm from './components/TestForm';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ResultGraph from './components/ResultGraph';
-import { Brain } from 'lucide-react';
+import Logo from './components/Logo';
+import Disclaimer from './components/Disclaimer';
 import { 
   generateDataPoints, 
   interpretResults
@@ -25,17 +26,6 @@ function App() {
       simulationParams: formData
     });
   };
-
-  const Logo = () => (
-    <div className="flex items-center gap-2">
-      <div className="p-2 rounded-xl bg-primary-400/10">
-        <Brain className="w-6 h-6 text-primary-400" />
-      </div>
-      <span className="text-xl font-bold font-orbitron bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent">
-        DopaCheck
-      </span>
-    </div>
-  );
 
   return (
     <Router>
@@ -76,7 +66,7 @@ function App() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 1 }}
-                      className="fixed top-0 right-0 w-[45%] h-screen"
+                      className="hidden md:block fixed top-0 right-0 w-[45%] h-screen"
                     >
                       {/* Efectos de iluminación ambiental */}
                       <div className="absolute inset-0">
@@ -122,6 +112,7 @@ function App() {
                       <div className="max-w-2xl backdrop-blur-sm bg-dark-950/30 rounded-2xl p-8 border border-white/5">
                         <TestForm onSubmit={handleFormSubmit} />
                       </div>
+                      <Disclaimer className="max-w-2xl mt-6" />
                     </div>
                   </div>
                 ) : (

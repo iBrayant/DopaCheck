@@ -6,14 +6,11 @@ export const convertBetaScale = (value) => {
 
 // Función para calcular la liberación de dopamina usando la ecuación D(t)=(αE₀/β)(1-e^(-βt))
 export const calculateDopamine = (alpha, E0, beta, t) => {
-  const result = (alpha * E0 / beta) * (1 - Math.exp(-beta * t));
-  console.log(`Calculando D(${t}):`, { alpha, E0, beta, result });
-  return result;
+  return (alpha * E0 / beta) * (1 - Math.exp(-beta * t));
 };
 
 // Función para generar puntos para la gráfica
 export const generateDataPoints = (alpha, E0, beta) => {
-  console.log('Generando puntos con:', { alpha, E0, beta });
   const timePoints = Array.from({ length: 10 }, (_, i) => i + 1);
   return timePoints.map(t => ({
     t,
@@ -71,11 +68,17 @@ export const interpretResults = (dataPoints) => {
   
   const avgRateOfChange = rateOfChange.reduce((a, b) => a + b, 0) / rateOfChange.length;
 
+  // D(t) crece de forma monótona, así que su máximo siempre cae en el último instante.
+  // El tiempo de respuesta útil es el que tarda en cruzar el umbral de respuesta normal.
+  const maxTime = dataPoints[dataPoints.length - 1].t;
+  const crossingTime = findThresholdCrossingTime(dataPoints);
+
   return {
     status,
     message,
     maxValue: maxD,
     avgRateOfChange,
-    peakTime: dataPoints.findIndex(point => point.D === maxD) + 1
+    crossingTime,
+    activationSpeed: analyzeActivationSpeed(crossingTime, maxTime)
   };
 }; 
