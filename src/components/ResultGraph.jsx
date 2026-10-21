@@ -24,7 +24,7 @@ ChartJS.register(
   Filler
 );
 
-const ResultGraph = ({ data, interpretation, simulationParams }) => {
+const ResultGraph = ({ data, interpretation, simulationParams, onReset }) => {
   if (!data || !interpretation || !simulationParams) {
     return <div>Error: Datos no disponibles</div>;
   }
@@ -39,6 +39,15 @@ const ResultGraph = ({ data, interpretation, simulationParams }) => {
         backgroundColor: '#818cf820',
         tension: 0.4,
         fill: true,
+      },
+      {
+        label: 'Umbral de respuesta normal (D = 15)',
+        data: data.map(() => 15),
+        borderColor: '#fbbf24',
+        borderDash: [6, 6],
+        borderWidth: 1.5,
+        pointRadius: 0,
+        fill: false,
       }
     ]
   };
@@ -48,6 +57,9 @@ const ResultGraph = ({ data, interpretation, simulationParams }) => {
     plugins: {
       legend: {
         position: 'top',
+        labels: {
+          color: '#d4d4d8'
+        }
       },
       title: {
         display: true,
@@ -60,6 +72,12 @@ const ResultGraph = ({ data, interpretation, simulationParams }) => {
     },
     scales: {
       y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Nivel de dopamina D(t)',
+          color: '#a1a1aa'
+        },
         grid: {
           color: '#27272a'
         },
@@ -68,6 +86,11 @@ const ResultGraph = ({ data, interpretation, simulationParams }) => {
         }
       },
       x: {
+        title: {
+          display: true,
+          text: 'Tiempo (min)',
+          color: '#a1a1aa'
+        },
         grid: {
           color: '#27272a'
         },
@@ -300,7 +323,7 @@ const ResultGraph = ({ data, interpretation, simulationParams }) => {
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        onClick={() => window.location.reload()}
+        onClick={onReset}
         className="w-full button-primary py-4 rounded-2xl text-lg font-semibold flex items-center justify-center gap-2"
       >
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

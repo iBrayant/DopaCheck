@@ -34,7 +34,7 @@ D(t) = (α · E₀ / β) · (1 − e^(−βt))
 | `α` | Eficiencia del sistema dopaminérgico |
 | `E₀` | Intensidad del estímulo base |
 | `β` | Tasa de degradación/regulación del sistema (la escala 1–5 del formulario se convierte a 2.0–0.5) |
-| `t` | Tiempo transcurrido (se evalúa de 1 a 10) |
+| `t` | Tiempo transcurrido (se evalúa de 0 a 10) |
 
 Es la solución de una ecuación diferencial de primer orden: la dopamina se acumula con el estímulo y se degrada a una tasa proporcional, tendiendo a un valor de equilibrio `αE₀/β`.
 
@@ -44,11 +44,11 @@ Se clasifica según el valor máximo alcanzado de `D(t)`:
 
 | Estado | Rango |
 |---|---|
-| Crítico | `D ≤ 5` |
-| Bajo | `5 < D ≤ 15` |
+| Muy baja | `D ≤ 5` |
+| Baja | `5 < D ≤ 15` |
 | Normal | `15 < D ≤ 25` |
-| Alto | `25 < D ≤ 35` |
-| Muy alto | `D > 35` |
+| Alta | `25 < D ≤ 35` |
+| Muy alta | `D > 35` |
 
 ## Stack
 

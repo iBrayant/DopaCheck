@@ -11,7 +11,7 @@ export const calculateDopamine = (alpha, E0, beta, t) => {
 
 // Función para generar puntos para la gráfica
 export const generateDataPoints = (alpha, E0, beta) => {
-  const timePoints = Array.from({ length: 10 }, (_, i) => i + 1);
+  const timePoints = Array.from({ length: 11 }, (_, i) => i)  // t = 0..10; en t = 0, D = 0;
   return timePoints.map(t => ({
     t,
     D: calculateDopamine(alpha, E0, beta, t)
@@ -45,7 +45,7 @@ export const interpretResults = (dataPoints) => {
   
   if (maxD <= 5) {
     status = 'critical';
-    message = 'La respuesta dopaminérgica es muy baja, lo que podría indicar una alta probabilidad de TDSH. La liberación de dopamina es mínima o su degradación es muy rápida, resultando en una respuesta sexual ausente o muy tenue.';
+    message = 'La respuesta dopaminérgica es muy baja, lo que podría ser consistente con indicadores de TDSH. La liberación de dopamina es mínima o su degradación es muy rápida, resultando en una respuesta sexual ausente o muy tenue.';
   } else if (maxD <= 15) {
     status = 'low';
     message = 'La respuesta dopaminérgica está por debajo del promedio, lo que podría ser un indicio de TDSH. Se observa una baja liberación o sensibilidad reducida, que puede manifestarse como dificultad para iniciar la fase de excitación sexual.';

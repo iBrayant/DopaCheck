@@ -115,14 +115,24 @@ const Home = () => {
         <footer className="border-t border-dark-800 mt-24 py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p className="text-neutral-400 text-sm">
-              © 2024 <span className="font-orbitron">DopaCheck</span>. Desarrollado con fines educativos.
+              © {new Date().getFullYear()} <span className="font-orbitron">DopaCheck</span>. Desarrollado con fines educativos.
             </p>
             <div className="mt-4 space-x-4">
-              <a href="#" className="text-neutral-400 hover:text-primary-400 transition-colors">
+              <a
+                href="https://github.com/iBrayant/DopaCheck"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-400 hover:text-primary-400 transition-colors"
+              >
                 GitHub
               </a>
-              <a href="#" className="text-neutral-400 hover:text-primary-400 transition-colors">
-                Contacto
+              <a
+                href="https://linkedin.com/in/brayant-vásquez-gómez"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-400 hover:text-primary-400 transition-colors"
+              >
+                LinkedIn
               </a>
             </div>
           </div>

@@ -29,7 +29,7 @@ const TestForm = ({ onSubmit }) => {
     <form onSubmit={handleSubmit} className="space-y-8">
       <div className="space-y-6">
         <div>
-          <label className="block mb-4">
+          <label htmlFor="alpha" className="block mb-4">
             <span className="block text-lg font-medium mb-1">
               1. Cuando estás en una situación sexual, ¿con qué rapidez sientes excitación o deseo?
             </span>
@@ -40,6 +40,7 @@ const TestForm = ({ onSubmit }) => {
           <div className="flex items-center gap-4">
             <input
               type="range"
+              id="alpha"
               name="alpha"
               min="1"
               max="5"
@@ -57,7 +58,7 @@ const TestForm = ({ onSubmit }) => {
         </div>
 
         <div>
-          <label className="block mb-4">
+          <label htmlFor="E0" className="block mb-4">
             <span className="block text-lg font-medium mb-1">
               2. ¿Qué tanto te estimulan las caricias, imágenes sexuales o pensamientos eróticos?
             </span>
@@ -68,6 +69,7 @@ const TestForm = ({ onSubmit }) => {
           <div className="flex items-center gap-4">
             <input
               type="range"
+              id="E0"
               name="E0"
               min="1"
               max="5"
@@ -85,7 +87,7 @@ const TestForm = ({ onSubmit }) => {
         </div>
 
         <div>
-          <label className="block mb-4">
+          <label htmlFor="beta" className="block mb-4">
             <span className="block text-lg font-medium mb-1">
               3. ¿Cuánto tiempo te dura la sensación de deseo/excitación antes de que se desvanezca?
             </span>
@@ -96,6 +98,7 @@ const TestForm = ({ onSubmit }) => {
           <div className="flex items-center gap-4">
             <input
               type="range"
+              id="beta"
               name="beta"
               min="1"
               max="5"

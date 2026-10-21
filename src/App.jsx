@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Home from './pages/Home';
 import TestForm from './components/TestForm';
@@ -25,6 +25,12 @@ function App() {
       interpretation: interpretResults(dataPoints),
       simulationParams: formData
     });
+    window.scrollTo(0, 0);
+  };
+
+  const handleReset = () => {
+    setResults(null);
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -78,7 +84,7 @@ function App() {
                       <div className="relative h-full w-full overflow-hidden">
                         <div className="absolute inset-0 bg-dark-950/30" />
                         <img
-                          src="/images/form-person.png"
+                          src="/images/form-person.webp"
                           alt="Persona reflexiva"
                           className="h-full w-full object-cover object-center scale-110"
                         />
@@ -116,12 +122,13 @@ function App() {
                     </div>
                   </div>
                 ) : (
-                  <ResultGraph {...results} />
+                  <ResultGraph {...results} onReset={handleReset} />
                 )}
               </div>
             </div>
           </div>
         } />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );
